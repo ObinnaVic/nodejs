@@ -6,5 +6,5 @@ const add = (a , b) => {
   return a + b;
 }
 
-
-module.exports = mul;
+//export a module using module.exports, and export a function from a module using module.export = functionName.
+module.exports = {mul, add};

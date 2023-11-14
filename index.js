@@ -1,6 +1,21 @@
+//require(): method which is used to import modules both the built-in modules and the local modules
+const PizzaShop = require("./pizzaShop");
 const EventEmitter = require("node:events");
-const mulFn = require("./math");
+const math = require("./math");
 
+//invoking an instance of the imported class object.
+const pizza = new PizzaShop();
+
+//using the "on" keyword because this class instance inherits the events class
+pizza.on("order", (size, toppings) => {
+    console.log(`Baking a ${toppings} pizza of ${size} size`);
+})
+
+pizza.placeOrder();
+
+console.log(pizza.displayNumber());
+
+const {add, mul} = math;
 
 //Events module returns a class which is instantiated here.
 const emitter = new EventEmitter();
@@ -21,8 +36,8 @@ const addResult = (a, b) => {
     return a + b;
 }
 
-const multiply = mulFn(2, 10);
-const multiplyTwo = mulFn(5, 2);
+const multiply = mul(2, 10);
+const multiplyTwo = add(5, 2);
 
 
 console.log(multiply);
