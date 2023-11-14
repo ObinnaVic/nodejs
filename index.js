@@ -2,6 +2,17 @@
 const PizzaShop = require("./pizzaShop");
 const EventEmitter = require("node:events");
 const math = require("./math");
+const buffer = new Buffer.from("Hello Victor");
+
+console.log(buffer); //returns the hexadecimal representation of the data.
+
+console.log(buffer.toJSON()); //returns an object containing the unicode (decimal) representation of the data.
+
+buffer.write("Hello Nkire"); //This is used to edit the data stored in the buffer memory which is limited to the size of the data in the buffer memory.
+
+console.log(buffer.toString()); //returns the data as a string.
+
+
 
 //invoking an instance of the imported class object.
 const pizza = new PizzaShop();
