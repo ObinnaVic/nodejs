@@ -1,8 +1,12 @@
 //require(): method which is used to import modules both the built-in modules and the local modules
 const PizzaShop = require("./pizzaShop");
 const EventEmitter = require("node:events");
+const fs = require("node:fs");
 const math = require("./math");
 const buffer = new Buffer.from("Hello Victor");
+
+
+//BUFFERS:
 
 console.log(buffer); //returns the hexadecimal representation of the data.
 
@@ -12,6 +16,37 @@ buffer.write("Hello Nkire"); //This is used to edit the data stored in the buffe
 
 console.log(buffer.toString()); //returns the data as a string.
 
+
+
+//FS (FILE SYSTEM MODULE): Uses buffer internally for execution.
+
+
+//READING A FILE;
+//Synchronous way of reading a file in fs module.
+const fileText = fs.readFileSync("./file.txt", "utf-8"); //returns the text written in the file.txt file.
+
+console.log(fileText);
+
+//Asynchronous way of reading a file
+fs.readFile("./file.txt", "utf-8", (error, data) => {
+    if (error) {
+        console.log(error);
+    } else {
+        console.log(data);
+    }
+})
+
+
+//WRITING A FILE;
+fs.writeFileSync("./greet.txt", "Hello World"); //this writes to the greet file. If the greet file doesnt exist, it creates a new file called greet.txt and writes to it.
+
+fs.writeFile("./greet.txt", " Hello Victor", {flag: "a"}, (err) => { //The write function overrides already written texts in the greet file but the {flag: "a"} stops if from overriding but instead append or adds the new text to the old.
+    if (err) {
+        console.log(err);
+    } else {
+        console.log("File written/updated");
+    }
+})
 
 
 //invoking an instance of the imported class object.
