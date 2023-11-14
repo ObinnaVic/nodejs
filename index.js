@@ -49,6 +49,20 @@ fs.writeFile("./greet.txt", " Hello Victor", {flag: "a"}, (err) => { //The write
 })
 
 
+//Using the fs module to read a file and pass data streams in chunks of the file to another file;
+const readableStream = fs.createReadStream("./file.txt", {
+    encoding: "utf-8",
+    highWaterMark: 2, //Meaning pass the stream of data in chunks of 2 bits per time.
+});
+
+const writeableStream = fs.createWriteStream("./file2.txt"); //crreate a new file and write the data into the new file.
+
+readableStream.on("data", (chunk) => { //Uses the "on" keyword from events class because the fs module inherits the events class.
+    console.log(chunk);
+    writeableStream.write(chunk);
+})
+
+
 //invoking an instance of the imported class object.
 const pizza = new PizzaShop();
 
