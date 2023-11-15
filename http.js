@@ -3,8 +3,16 @@
 const http = require("node:http");
 
 const server = http.createServer((req, res) => {
-    res.writeHead(200, {"Content-Type" : "text/plain"});
-    res.end("Hello world");
+
+    const Person = { //Json object 
+        firstName: "Victor",
+        LastName: "Nkire",
+        age: 23,
+        career: "Frontend developer"
+    }
+
+    res.writeHead(200, {"Content-Type" : "application/json"}); //The type becomes "application/json".
+    res.end(JSON.stringify(Person)); //You have to stringify the object inorder to send it as a response from the server.
 });
 
 server.listen(3000, () => {
