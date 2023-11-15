@@ -3,6 +3,7 @@ const PizzaShop = require("./pizzaShop");
 const EventEmitter = require("node:events");
 const fs = require("node:fs");
 const math = require("./math");
+const zlib = require("node:zlib"); //Used to create zip files.
 const buffer = new Buffer.from("Hello Victor");
 
 
@@ -49,11 +50,16 @@ fs.writeFile("./greet.txt", " Hello Victor", {flag: "a"}, (err) => { //The write
 })
 
 
+const gzip = zlib.createGzip(); //Create a gzip to enable the file conversion.
+
 //Using the fs module to read a file and pass data streams in chunks of the file to another file;
 const readableStream = fs.createReadStream("./file.txt", {
     encoding: "utf-8",
     highWaterMark: 2, //Meaning pass the stream of data in chunks of 2 bits per time.
 });
+
+readableStream.pipe(gzip).pipe(fs.WriteStream("./file2.txt.gz")); //this creates a zip file called file2.txt.gz and writes or passes the content into the file.
+
 
 const writeableStream = fs.createWriteStream("./file2.txt"); //crreate a new file and write the data into the new file.
 
